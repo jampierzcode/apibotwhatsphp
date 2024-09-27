@@ -47,8 +47,7 @@ class Usuario
     {
 
         try {
-            $this->conexion->beginTransaction();
-            $sql = "UPDATE FROM sessions SET isActive=:isActive WHERE clientId=:cliente_id";
+            $sql = "UPDATE sessions SET isActive=:isActive WHERE clientId=:cliente_id";
             $query = $this->conexion->prepare($sql);
             $query->execute(array(
                 ":isActive" => 0,
@@ -58,7 +57,6 @@ class Usuario
             $response[] = [
                 "msg" => "success",
             ];
-            $this->conexion->commit(); // Confirmar la transacción
 
             $this->mensaje = $response;
             return $this->mensaje;

@@ -15,7 +15,7 @@ if ($_POST["funcion"] == "add_session") {
 if ($_POST["funcion"] == "desconectar_session") {
     $cliente_id = $_POST["cliente_id"];
     $usuario->desconectar_session($cliente_id);
-    echo $usuario->mensaje;
+    echo json_encode($usuario->mensaje);
 }
 if ($_POST["funcion"] == "buscar_sesiones") {
     $usuario->buscar_sesiones();
