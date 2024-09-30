@@ -12,6 +12,12 @@ if ($_POST["funcion"] == "add_session") {
     $usuario->add_session($cliente_id, $last_connected);
     echo json_encode($usuario->mensaje);
 }
+if ($_POST["funcion"] == "login") {
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $usuario->login($email, $password);
+    echo json_encode($usuario->mensaje);
+}
 if ($_POST["funcion"] == "desconectar_session") {
     $cliente_id = $_POST["cliente_id"];
     $usuario->desconectar_session($cliente_id);

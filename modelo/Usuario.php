@@ -14,6 +14,32 @@ class Usuario
         $this->conexion = $db->pdo;
         // $this hace referencia al objeto que se crea en una instancia de clase
     }
+    function login($email, $password)
+    {
+
+        try {
+            $sql = "SELECT id, nombres, email, celular FROM usuario WHERE email=:email AND password=:password";
+            $query = $this->conexion->prepare($sql);
+            $query->execute(array(
+                ":email" => $email,
+                ":password" => $password,
+            ));
+            $this->datos = $query->fetch();
+            $response = [
+                "msg" => "success",
+                "data" => $this->datos
+            ];
+            $this->mensaje = $response;
+            return $this->mensaje;
+        } catch (\Throwable $error) {
+            $response = [
+                "msg" => "error",
+                "error" => $error
+            ];
+            $this->mensaje = $response;
+            return $this->mensaje;
+        }
+    }
     function add_session($cliente_id, $last_connected)
     {
 
